@@ -19,6 +19,7 @@ module.exports = {
           '@emotion/core': path.join(process.cwd(), 'node_modules/@emotion/react'),
           '@emotion/styled': path.join(process.cwd(), 'node_modules/@emotion/styled'),
           'emotion-theming': path.join(process.cwd(), 'node_modules/@emotion/react'),
+          '@': path.join(process.cwd(), 'src'),
         }
       }
     }
