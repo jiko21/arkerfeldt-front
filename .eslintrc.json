@@ -1,3 +1,26 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next",
+    "google",
+    "prettier",
+    "next/core-web-vitals"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "require-jsdoc": "off",
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "prettier/prettier": ["error", {
+      "printWidth": 80,
+      "trailingComma": "all",
+      "tabWidth": 2,
+      "semi": true,
+      "singleQuote": true
+    }]
+  }
 }
