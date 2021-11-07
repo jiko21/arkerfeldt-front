@@ -16,6 +16,7 @@ module.exports = {
   },
   transformIgnorePatterns: ['/node_modules/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/test/tsconfig.jest.json',
