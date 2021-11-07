@@ -32,7 +32,11 @@ type Props = {
 
 const PostItem: React.FC<Props> = ({ checked, onChecked, link, post }) => (
   <div css={wrapperStyle}>
-    <CheckBox checked={checked} onClick={onChecked} testId={'postItem-checkbox'} />
+    <CheckBox
+      checked={checked}
+      onClick={onChecked}
+      testId={'postItem-checkbox'}
+    />
     <div
       css={css`
         margin-left: 16px;
