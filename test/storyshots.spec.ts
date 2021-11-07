@@ -7,7 +7,7 @@ initStoryshots({
   test: imageSnapshot({
     storybookUrl: `file://${path.resolve(__dirname, '../storybook-static')}`,
     getMatchOptions: () => ({
-      failureThreshold: 0.02,
+      failureThreshold: 0.05,
       failureThresholdType: 'percent',
     }),
   }),
