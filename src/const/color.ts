@@ -8,6 +8,8 @@ export const Color = {
   LIGHT_GRAY: '#C4C4C4',
   LIGHT_TEXT: '#6A6A6A',
   WHITE: '#FFFFFF',
+  WHITE_LIGHT: '#FCFCFC',
+  WHITE_LIGHT_HOVER: '#ECECEC',
 } as const;
 
 export type Color = typeof Color[keyof typeof Color];
