@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { FC, InputHTMLAttributes } from 'react';
-import { Color } from '../../const/color';
+import { Color } from '@/const/color';
 
 const inputStyle = css`
   border: 1px solid ${Color.BLACK};
