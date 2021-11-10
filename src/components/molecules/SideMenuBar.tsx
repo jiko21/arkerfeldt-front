@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import { FC } from 'react';
 import { Color } from '@/const/color';
+import { MenuItem } from '@/types/MenuItem';
 
 const ulStyle = css`
   background-color: ${Color.BLACK};
