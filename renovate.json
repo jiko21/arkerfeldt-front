@@ -1,5 +1,27 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@types/"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      }
+    },
+    {
+      "excludePackagePatterns": ["^@types/"],
+      "patch": {
+        "groupName": "all non-major dependencies",
+        "groupSlug": "all-minor-patch"
+      },
+      "minor": {
+        "groupName": "all non-major dependencies",
+        "groupSlug": "all-minor-patch"
+      }
+    }
+  ],
+  "schedule": ["after 10am on saturday"]
 }
