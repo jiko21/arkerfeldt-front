@@ -8,6 +8,7 @@ const inputStyle = css`
   border-radius: 6px;
   height: 30px;
   min-width: 240px;
+  width: 100%;
   ::placeholder {
     color: ${Color.LIGHT};
   }
