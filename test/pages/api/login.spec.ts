@@ -5,6 +5,7 @@ import admin from '@/server/firebaseAdmin';
 import { setCookie } from 'nookies';
 import { authCookie } from '@/const/auth';
 
+jest.mock('@/server/firebaseAdmin');
 jest.mock('nookies');
 
 describe('/api/login', () => {
