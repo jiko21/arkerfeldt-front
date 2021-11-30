@@ -1,11 +1,17 @@
 import httpMocks from 'node-mocks-http';
 import login from '@/pages/api/login';
 import { NextApiRequest, NextApiResponse } from 'next';
-import admin from '@/server/firebaseAdmin';
 import { setCookie } from 'nookies';
 import { authCookie } from '@/const/auth';
 
-jest.mock('@/server/firebaseAdmin');
+const FIREBASE_COOKIE = 'cookie';
+
+jest.mock('@/server/firebaseAdmin', () => ({
+  auth: () => ({
+    createSessionCookie: () => FIREBASE_COOKIE,
+  }),
+}));
+
 jest.mock('nookies');
 
 describe('/api/login', () => {
@@ -25,16 +31,6 @@ describe('/api/login', () => {
   });
 
   test('correctly return', async () => {
-    const FIREBASE_COOKIE = 'cookie';
-    const createSessionCookieMock = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    jest.spyOn(admin, 'auth').mockReturnValue({
-      createSessionCookie: createSessionCookieMock,
-    });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    createSessionCookieMock.mockResolvedValue(FIREBASE_COOKIE);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const mockRequest = httpMocks.createRequest<NextApiRequest>({
