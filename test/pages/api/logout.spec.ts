@@ -5,7 +5,6 @@ import { authCookie } from '@/const/auth';
 import firebaseAdmin from '@/server/firebaseAdmin';
 import { destroyCookie, parseCookies } from 'nookies';
 
-jest.mock('@/server/firebaseAdmin');
 jest.mock('nookies');
 
 describe('/api/logout', () => {
