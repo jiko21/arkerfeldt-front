@@ -1,13 +1,21 @@
 import httpMocks from 'node-mocks-http';
 import logout from '@/pages/api/logout';
 import { NextApiRequest, NextApiResponse } from 'next';
-import admin from '@/server/firebaseAdmin';
 import { authCookie } from '@/const/auth';
+import firebaseAdmin from '@/server/firebaseAdmin';
 import { destroyCookie, parseCookies } from 'nookies';
 
 jest.mock('nookies');
 
 describe('/api/logout', () => {
+  const verifySessionCookieMock = jest.fn();
+  const revokeRefreshTokensMock = jest.fn();
+
+  jest.spyOn(firebaseAdmin, 'auth').mockReturnValue({
+    verifySessionCookie: verifySessionCookieMock,
+    revokeRefreshTokens: revokeRefreshTokensMock,
+  } as any);
+
   test('404 when method is not `POST`', async () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -25,19 +33,9 @@ describe('/api/logout', () => {
 
   test('correctly return with destroy cookie success ', async () => {
     const FIREBASE_COOKIE = 'cookie';
-    const verifySessionCookieMock = jest.fn();
-    const revokeRefreshTokensMock = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    jest.spyOn(admin, 'auth').mockReturnValue({
-      verifySessionCookie: verifySessionCookieMock,
-      revokeRefreshTokens: revokeRefreshTokensMock,
-    });
     (parseCookies as jest.Mock).mockReturnValue({
       [authCookie]: FIREBASE_COOKIE,
     });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     verifySessionCookieMock.mockResolvedValue({
       sub: 'sub',
     });
@@ -67,24 +65,14 @@ describe('/api/logout', () => {
   });
 
   test('correctly return with destroy cookie failed ', async () => {
-    const FIREBASE_COOKIE = 'cookie';
-    const verifySessionCookieMock = jest.fn();
-    const revokeRefreshTokensMock = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    jest.spyOn(admin, 'auth').mockReturnValue({
-      verifySessionCookie: verifySessionCookieMock,
-      revokeRefreshTokens: revokeRefreshTokensMock,
-    });
-    (parseCookies as jest.Mock).mockReturnValue({
-      [authCookie]: FIREBASE_COOKIE,
-    });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     verifySessionCookieMock.mockResolvedValue({
       sub: 'sub',
     });
-    revokeRefreshTokensMock.mockRejectedValue(new Error('error'));
+    revokeRefreshTokensMock.mockRejectedValue(new Error());
+    const FIREBASE_COOKIE = 'cookie';
+    (parseCookies as jest.Mock).mockReturnValue({
+      [authCookie]: FIREBASE_COOKIE,
+    });
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const mockRequest = httpMocks.createRequest<NextApiRequest>({
@@ -95,6 +83,7 @@ describe('/api/logout', () => {
         },
       },
     });
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const mockResponse = httpMocks.createResponse<NextApiResponse>();
