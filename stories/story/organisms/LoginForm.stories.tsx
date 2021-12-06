@@ -26,3 +26,15 @@ const Template: Story<React.ComponentProps<typeof LoginForm>> = (args) => {
 
 export const Sample1 = Template.bind({});
 Sample1.args = {};
+
+export const Sample2 = Template.bind({});
+Sample2.args = {
+  isError: true,
+  isLoading: false,
+};
+
+export const Sample3 = Template.bind({});
+Sample3.args = {
+  isError: false,
+  isLoading: true,
+};

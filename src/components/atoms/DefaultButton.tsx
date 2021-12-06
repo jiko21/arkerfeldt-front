@@ -12,6 +12,7 @@ const buttonStyle = css`
   font-weight: 700;
   height: 30px;
   min-width: 240px;
+  width: 100%;
   transition: 0.5s;
   &:hover {
     transform: translateY(-4px);

@@ -10,6 +10,7 @@ exports[`DefaultButton.tsx should correctly render 1`] = `
   font-weight: 700;
   height: 30px;
   min-width: 240px;
+  width: 100%;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }

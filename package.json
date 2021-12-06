@@ -14,15 +14,22 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@firebase/auth": "^0.19.2",
     "@emotion/react": "11.7.0",
     "@emotion/styled": "11.6.0",
     "@fortawesome/fontawesome-svg-core": "1.2.36",
     "@fortawesome/free-brands-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.1.16",
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "firebase": "^9.4.0",
+    "firebase-admin": "^10.0.0",
     "next": "12.0.4",
+    "nookies": "^2.5.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-query": "^3.32.1"
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
@@ -34,6 +41,7 @@
     "@storybook/addon-storyshots-puppeteer": "6.4.0",
     "@storybook/react": "6.4.0",
     "@testing-library/react": "12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.11",
     "@types/react": "17.0.37",
@@ -45,6 +53,8 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "jest": "27.3.1",
+    "msw": "^0.35.0",
+    "node-mocks-http": "^1.11.0",
     "prettier": "2.5.0",
     "puppeteer": "3.3.0",
     "ts-jest": "27.0.7",

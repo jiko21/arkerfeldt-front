@@ -14,10 +14,36 @@ describe('CheckBox.tsx', () => {
     onGithubLoginMock.mockClear();
   });
 
-  it('should correctly render (checked: true)', () => {
+  it('should correctly render', () => {
     const props = {
       onEmailLogin: onEmailLoginMock,
       onGithubLogin: onGithubLoginMock,
+      isLoading: false,
+      isError: false,
+    };
+    const { container } = render(<LoginForm {...props} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should correctly render (with error)', () => {
+    const props = {
+      onEmailLogin: onEmailLoginMock,
+      onGithubLogin: onGithubLoginMock,
+      isLoading: false,
+      isError: true,
+    };
+    const { container } = render(<LoginForm {...props} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should correctly render (with loading)', () => {
+    const props = {
+      onEmailLogin: onEmailLoginMock,
+      onGithubLogin: onGithubLoginMock,
+      isLoading: true,
+      isError: false,
     };
     const { container } = render(<LoginForm {...props} />);
 
@@ -28,6 +54,8 @@ describe('CheckBox.tsx', () => {
     const props = {
       onEmailLogin: onEmailLoginMock,
       onGithubLogin: onGithubLoginMock,
+      isLoading: false,
+      isError: false,
     };
     render(<LoginForm {...props} />);
     fireEvent.input(screen.getByTestId('email'), {
@@ -52,6 +80,8 @@ describe('CheckBox.tsx', () => {
     const props = {
       onEmailLogin: onEmailLoginMock,
       onGithubLogin: onGithubLoginMock,
+      isLoading: false,
+      isError: false,
     };
     render(<LoginForm {...props} />);
     fireEvent.click(screen.getByTestId('github-btn'));
