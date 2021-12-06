@@ -17,12 +17,14 @@ const serviceAccount = {
 };
 
 const admin =
-  Admin.apps[0] ||
-  Admin.initializeApp({
-    credential: Admin.credential.cert(
-      serviceAccount as { [key: string]: string },
-    ),
-    databaseURL: process.env.FIREBASE_DATABASE_URL,
-  });
+  process.env.NODE_ENV !== 'test'
+    ? Admin.apps[0] ||
+      Admin.initializeApp({
+        credential: Admin.credential.cert(
+          serviceAccount as { [key: string]: string },
+        ),
+        databaseURL: process.env.FIREBASE_DATABASE_URL,
+      })
+    : ({} as Admin.app.App);
 
 export default admin;
