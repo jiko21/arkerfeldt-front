@@ -8,9 +8,6 @@ module.exports = {
   snapshotSerializers: [
     '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
   ],
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
-  },
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
   },
@@ -18,8 +15,30 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   globals: {
-    'ts-jest': {
+    '@swc/jest': {
       tsconfig: '<rootDir>/test/tsconfig.jest.json',
     },
+  },
+  transform: {
+    '.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        sourceMaps: true,
+        module: {
+          type: 'commonjs',
+        },
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            tsx: true,
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
   },
 };
