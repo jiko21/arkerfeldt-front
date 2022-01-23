@@ -4,6 +4,11 @@ const client = axios.create({
   baseURL: 'http://localhost:3000',
 });
 
+export const getRequest = async <ReturnType>(
+  path: string,
+  config?: AxiosRequestConfig,
+): Promise<AxiosResponse<ReturnType>> => await client.get(path, config);
+
 export const postRequest = async <RequestParams, ReturnType>(
   path: string,
   params?: RequestParams,
