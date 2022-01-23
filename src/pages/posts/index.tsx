@@ -39,8 +39,6 @@ const Posts = () => {
     return data;
   });
   const [status, updateValue] = useState('すべて');
-  const [posts, updatePosts] = useState<Post[]>([]);
-  const { onSignOut } = useLogout();
   const router = useRouter();
 
   return (
