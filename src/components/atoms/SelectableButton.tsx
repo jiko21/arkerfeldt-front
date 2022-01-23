@@ -85,19 +85,21 @@ const SelectableButton: FC<Props> = ({
       <button ref={buttonRef} css={buttonStyle} data-testid="enable-btn">
         <span
           css={svgWrapper}
+          data-testid="button-tapped"
           onClick={() => {
             changeSelectStatus(!isSelect);
           }}
         >
           <FontAwesomeIcon icon={isSelect ? faChevronUp : faChevronDown} />
         </span>
-        <div css={childWrapper} onClick={onClick}>
+        <div css={childWrapper} onClick={onClick} data-testid="button-area">
           {children}
         </div>
       </button>
       {isSelect && (
         <Ul
           width={buttonRef.current ? buttonRef.current.offsetWidth : undefined}
+          data-testid="selectable-area"
         >
           {candidates.map((item) => (
             <li
@@ -107,6 +109,7 @@ const SelectableButton: FC<Props> = ({
                 changeSelectStatus(!isSelect);
               }}
               key={item.value}
+              data-testid={`candidate-${item.value}`}
             >
               {item.text}
             </li>

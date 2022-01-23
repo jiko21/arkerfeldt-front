@@ -2,7 +2,7 @@ import PostList from '@/components/organisms/PostList';
 import { PublishStatus } from '@/const/post';
 import { render } from '@testing-library/react';
 
-describe('PostList.tsx', () => {
+describe('PostList.spec.tsx', () => {
   it('should correctly render', () => {
     const props = {
       posts: [
