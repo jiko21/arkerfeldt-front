@@ -21,11 +21,11 @@ type Props = {
   menuItems: MenuItem[];
 };
 
-const MenuTemplate: React.FC<Props> = React.memo(({ children, menuItems }) => (
+const MenuTemplate: React.FC<Props> = ({ children, menuItems }) => (
   <div css={topWrapper}>
     <SideMenuBar menuItems={menuItems} />
     <div css={wrapperStyle}>{children}</div>
   </div>
-));
+);
 
-export default MenuTemplate;
+export default React.memo(MenuTemplate);
